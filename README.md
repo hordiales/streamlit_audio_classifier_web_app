@@ -12,8 +12,7 @@ Audio Classifier ML web app
 
 ## To run streamlit web as Docker service
 ### Build the Docker image
-    $ docker build --rm -t streamlit
--audioclassifier-webapp .
+    $ docker build --rm -t streamlit-audioclassifier-webapp .
 
 ### Run the Docker image as a service
     $ docker run -d -p 80:8501 --name audioclassifier-ml-webapp streamlit-audioclassifier-webapp
