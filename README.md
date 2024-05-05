@@ -18,11 +18,19 @@ Audio Classifier ML web app
     $ docker run -d -p 80:8501 --name audioclassifier-ml-webapp streamlit-audioclassifier-webapp
 
 # Tracking large files with https://git-lfs.com/
-An open source Git extension for versioning large files
-Git Large File Storage (LFS) replaces large files such as audio samples, videos, datasets, and graphics with text pointers inside Git, while storing the file contents on a remote server like GitHub.com or GitHub Enterprise.
 
-git lfs track "*.hdf5"
-git add .gitattributes
-git add saved_model.hdf5
-git commit -m "Add model file"
-git push origin main
+"An open source Git extension for versioning large files
+Git Large File Storage (LFS) replaces large files such as audio samples, videos, datasets, and graphics with text pointers inside Git, while storing the file contents on a remote server like GitHub.com or GitHub Enterprise."
+
+Install git-lfs
+
+## to upload a new large file
+	$ git lfs track "*.hdf5"
+	$ git add .gitattributes
+	$ git add saved_model.hdf5
+	$ git commit -m "Add model file"
+	$ git push origin main
+
+
+## to download it
+ 	$ git-lfs pull
