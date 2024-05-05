@@ -42,7 +42,7 @@ loaded_model = tf.keras.models.load_model(h5_file)
 # Load classes encoding from the JSON file
 with open(FILES_PATH+'zero_encoded_classes.json', 'r') as json_file:
     loaded_zero_encoded_classes = json.load(json_file)
-    st.write(loaded_zero_encoded_classes)
+    
 
 def decode_one_hot(encoded_output, class_labels):
     # Find the index of the highest value in the one-hot encoded array
@@ -64,27 +64,30 @@ def classify(uploaded_file):
 
 def main():
     #titulo
-    st.title('Clasificador de audio / guitarra preparada')
+    st.title('Clasificador de audio')
+
     #titulo de sidebar
-    st.sidebar.header('User Input Parameters')
-
+    # st.sidebar.header('User Input Parameters')
     #funcion para poner los parametrso en el sidebar
-    def user_input_parameters():
-        sepal_length = st.sidebar.slider('Sepal length', 4.3, 7.9, 5.4)
-        sepal_width = st.sidebar.slider('Sepal width', 2.0, 4.4, 3.4)
-        petal_length = st.sidebar.slider('Petal length', 1.0, 6.9, 1.3)
-        petal_width = st.sidebar.slider('Petal width', 0.1, 2.5, 0.2)
-        data = {'sepal_length': sepal_length,
-                'sepal_width': sepal_width,
-                'petal_length': petal_length,
-                'petal_width': petal_width,
-                }
-        features = pd.DataFrame(data, index=[0])
-        return features
+    # def user_input_parameters():
+    #     sepal_length = st.sidebar.slider('Sepal length', 4.3, 7.9, 5.4)
+    #     sepal_width = st.sidebar.slider('Sepal width', 2.0, 4.4, 3.4)
+    #     petal_length = st.sidebar.slider('Petal length', 1.0, 6.9, 1.3)
+    #     petal_width = st.sidebar.slider('Petal width', 0.1, 2.5, 0.2)
+    #     data = {'sepal_length': sepal_length,
+    #             'sepal_width': sepal_width,
+    #             'petal_length': petal_length,
+    #             'petal_width': petal_width,
+    #             }
+    #     features = pd.DataFrame(data, index=[0])
+    #     return features
 
-    df = user_input_parameters()
+    # df = user_input_parameters()
 
-    uploaded_file = st.sidebar.file_uploader("Choose a file")
+    #ver sample_rate
+    # st.write("Input esperado. Arhivo wav. Sample Rate: 44100")
+    st.write("Categorias posibles: ", ', '.join(map(str, loaded_zero_encoded_classes))) #escribe en pantalla categorias posibles
+    uploaded_file = st.sidebar.file_uploader("Input esperado. Arhivo wav. Sample Rate: 44100")
     if uploaded_file is not None:
     #     # To read file as bytes:
         bytes_data = uploaded_file.getvalue()
@@ -97,33 +100,36 @@ def main():
     #     st.write(stringio)
 
     #json
-    cat_uploaded_file = st.sidebar.file_uploader("Choose a json file")
-    if cat_uploaded_file is not None:
-         # To read file as string:
-         string_data = StringIO.read()
-         st.write(string_data)
+    # cat_uploaded_file = st.sidebar.file_uploader("Choose a json file")
+    # if cat_uploaded_file is not None:
+    #      # To read file as string:
+    #      string_data = StringIO.read()
+    #      st.write(string_data)
 
     # Can be used wherever a "file-like" object is accepted:
     #dataframe = pd.read_csv(uploaded_file)
     #st.write(dataframe)
     
     #escoger el modelo preferido
-    option = ['Audio Classifier TL','Linear Regression', 'Logistic Regression', 'SVM']
-    model = st.sidebar.selectbox('Which model you like to use?', option)
+    # option = ['Audio Classifier TL','Linear Regression', 'Logistic Regression', 'SVM']
+    option = ['GuitarraPreparada LH']
+    # model = st.sidebar.selectbox('Which model you like to use?', option)
+    model = st.sidebar.selectbox('Modelo a utilizar', option)
 
-    st.subheader('User Input Parameters')
+    # st.subheader('Parameters')
+    # st.subheader('Parámetros')
     st.subheader(model)
-    st.write(df)
+    # st.write(df) # user_input_parameters()
 
     if st.button('RUN'):
-        if model == 'Audio Classifier TL':
+        if model == 'GuitarraPreparada LH':
             st.success(classify("tmp-out.wav"))
-        elif model == 'Linear Regression':
-            st.success(classify(lin_reg.predict(df)))
-        elif model == 'Logistic Regression':
-            st.success(classify(log_reg.predict(df)))
-        else:
-            st.success(classify(svc_m.predict(df)))
+        # elif model == 'Linear Regression':
+        #     st.success(classify(lin_reg.predict(df)))
+        # elif model == 'Logistic Regression':
+        #     st.success(classify(log_reg.predict(df)))
+        # else:
+        #     st.success(classify(svc_m.predict(df)))
 
 
 if __name__ == '__main__':
