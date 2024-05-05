@@ -1,0 +1,9 @@
+# sklearn # deprecated!
+scikit-learn #use this!
+pandas
+streamlit
+librosa
+#json
+tensorflow
+keras
+watchdog #macos?
