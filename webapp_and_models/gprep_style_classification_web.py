@@ -33,16 +33,18 @@ def preprocess_input(example_filename, sample_rate=None, audio_duration=None):
 
     return X_truncated, orig_sr, mel_spec_db, image_input
 
-
-# LOAD model
 FILES_PATH="./"
-h5_file = FILES_PATH+"saved_model.hdf5"
-loaded_model = tf.keras.models.load_model(h5_file)
 
 # Load classes encoding from the JSON file
 with open(FILES_PATH+'zero_encoded_classes.json', 'r') as json_file:
     loaded_zero_encoded_classes = json.load(json_file)
-    
+    print(loaded_zero_encoded_classes)    
+
+
+# LOAD model
+h5_file = FILES_PATH+"saved_model.hdf5"
+loaded_model = tf.keras.models.load_model(h5_file)
+
 
 def decode_one_hot(encoded_output, class_labels):
     # Find the index of the highest value in the one-hot encoded array

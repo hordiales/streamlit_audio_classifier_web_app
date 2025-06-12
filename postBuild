@@ -1,0 +1,10 @@
+#!/bin/bash
+
+# Install git-lfs
+apt-get update && apt-get install -y git-lfs
+
+# Initialize git-lfs (important!)
+git lfs install
+
+# Pull actual LFS files
+git lfs pull
