@@ -1,13 +1,13 @@
 #importar librerias
 import streamlit as st
 # import pickle
-import pandas as pd
+#import pandas as pd
 import numpy as np
 import librosa
 import json
 import tensorflow as tf
-import keras
-from io import StringIO
+#import keras
+#from io import StringIO
 
 def preprocess_input(example_filename, sample_rate=None, audio_duration=None):
     n_fft = 2048

@@ -1,9 +1,9 @@
 # sklearn # deprecated!
 scikit-learn #use this!
-pandas
+#pandas
 streamlit
 librosa
 #json
 tensorflow
-keras
+#keras
 watchdog #macos?
